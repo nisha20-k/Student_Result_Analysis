@@ -79,3 +79,83 @@ print("Fail Student:",np.sum(fail_student))
 
 above_avg = students[marks > average_marks]
 print("Above Average students:",above_avg)
+
+
+#grade calculation
+
+def calculate_grade(mark):
+    if mark >= 90:
+        return "A+"
+    elif mark >= 80:
+        return "A"
+    elif mark >= 70:
+        return "B"
+    elif mark >= 60:
+        return "C"
+    elif mark >= 35:
+        return "D"
+    else:
+        return "F"
+    
+    print("\nGrades")
+print("-" * 20)
+
+
+def display_grades():
+    print("\nGrades")
+    print("-" * 30)
+    for i in range(len(students)):
+        grade = calculate_grade(marks[i])
+        print(f"{students[i]:<10} : {marks[i]:<5} : {grade}")
+        
+    
+    
+     #Professional report
+    
+topper_index = np.argmax(marks)
+lowest_index = np.argmin(marks)
+
+topper_name = students[topper_index]
+lowest_student = students[lowest_index]
+
+highest_marks = np.max(marks)
+lowest_marks = np.min(marks)
+
+average_marks = np.mean(marks)
+
+pass_count = np.sum(marks >= 35)
+fail_count = np.sum(marks < 35)
+
+def display_summary():
+    print("\n" + "=" * 50)
+    print("SUMMARY REPORT")
+    print("=" * 50)
+
+    print(f"Total Students : {len(students)}")
+    print(f"Average Marks  : {average_marks:.2f}")
+    print(f"Highest Marks  : {highest_marks}")
+    print(f"Topper         : {topper_name}")
+    print(f"Lowest Marks   : {lowest_marks}")       
+    print(f"Lowest Scorer  : {lowest_student}")
+    print(f"Pass Students  : {pass_count}")
+    print(f"Fail Students  : {fail_count}")
+    
+display_summary()
+
+display_grades()
+
+
+# Top three student
+
+def display_top_students():
+    print("\n" + "=" * 40)
+    print("TOP 3 STUDENTS")
+    print("=" * 40)
+
+    sorted_indexes = np.argsort(marks)[::-1]
+
+    for i in range(3):
+        index = sorted_indexes[i]
+        print(f"{i+1}. {students[index]} - {marks[index]} Marks")
+        
+display_top_students()
