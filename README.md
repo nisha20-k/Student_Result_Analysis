@@ -1,10 +1,10 @@
-# 📊 Student Result Analysis System
+# Student Result Analysis System
 
 A Python project that analyzes student marks using NumPy. The project reads data from a CSV file, calculates statistics, assigns grades, identifies top-performing students, and generates a report in CSV format.
 
 ---
 
-## 🚀 Features
+# Features
 
 - Read student data from CSV file
 - Calculate average marks
@@ -18,7 +18,7 @@ A Python project that analyzes student marks using NumPy. The project reads data
 
 ---
 
-## 🛠 Technologies Used
+#  Technologies Used
 
 - Python 3
 - NumPy
@@ -28,7 +28,7 @@ A Python project that analyzes student marks using NumPy. The project reads data
 
 ---
 
-## 📁 Project Structure
+# Project Structure
 
 ```text
 Student_Result_Analysis/
@@ -42,7 +42,7 @@ Student_Result_Analysis/
 
 ---
 
-## ▶️ How to Run
+# How to Run
 
 1. Clone the repository
 
@@ -70,7 +70,7 @@ python student_result_analysis.py
 
 ---
 
-## 📊 Sample Output
+# Sample Output
 
 - Summary Report
 - Grade Calculation
@@ -80,6 +80,6 @@ python student_result_analysis.py
 
 ---
 
-## 👩‍💻 Author
+# Author
 
 **Nisha Kalbhor**
