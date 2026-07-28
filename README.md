@@ -70,6 +70,12 @@ python student_result_analysis.py
 
 ---
 
+
+##  Project Screenshot
+
+![Project Output](screenshots/output.png)
+
+
 # Sample Output
 
 - Summary Report
