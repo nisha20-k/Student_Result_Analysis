@@ -1,29 +1,46 @@
-import numpy as np
-students = np.array([
-    "Aman",
-    "Rahul",
-    "Priya",
-    "Sneha",
-    "Karan",
-    "Riya",
-    "Ankit",
-    "Pooja",
-    "Neha",
-    "Rohit"
-])
+import csv
 
-marks = np.array([
-    85,
-    72,
-    95,
-    33,
-    67,
-    88,
-    54,
-    91,
-    45,
-    29
-])
+import numpy as np
+
+def load_data(filename):
+    students = []
+    marks = []
+
+    with open(filename, "r") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            students.append(row["Name"])
+            marks.append(int(row["Marks"]))
+
+    return np.array(students), np.array(marks)
+students, marks = load_data("student_data.csv")
+
+# students = np.array([
+#     "Aman",
+#     "Rahul",
+#     "Priya",
+#     "Sneha",
+#     "Karan",
+#     "Riya",
+#     "Ankit",
+#     "Pooja",
+#     "Neha",
+#     "Rohit"
+# ])
+
+# marks = np.array([
+#     85,
+#     72,
+#     95,
+#     33,
+#     67,
+#     88,
+#     54,
+#     91,
+#     45,
+#     29
+# ])
 
 print("Students:")
 print(students)
@@ -102,12 +119,18 @@ print("-" * 20)
 
 
 def display_grades():
-    print("\nGrades")
-    print("-" * 30)
+    print("\n" + "=" * 55)
+    print("STUDENT REPORT CARD")
+    print("=" * 55)
+
+    print(f"{'Name':<12}{'Marks':<8}{'Grade':<8}{'Result'}")
+    print("-" * 55)
+
     for i in range(len(students)):
         grade = calculate_grade(marks[i])
-        print(f"{students[i]:<10} : {marks[i]:<5} : {grade}")
-        
+        result = "Pass" if marks[i] >= 35 else "Fail"
+
+        print(f"{students[i]:<12}{marks[i]:<8}{grade:<8}{result}")
     
     
      #Professional report
@@ -140,10 +163,6 @@ def display_summary():
     print(f"Pass Students  : {pass_count}")
     print(f"Fail Students  : {fail_count}")
     
-display_summary()
-
-display_grades()
-
 
 # Top three student
 
@@ -157,5 +176,62 @@ def display_top_students():
     for i in range(3):
         index = sorted_indexes[i]
         print(f"{i+1}. {students[index]} - {marks[index]} Marks")
+ 
+def generate_report():
+    with open("report.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+
+        writer.writerow(["Name", "Marks", "Grade", "Result"])
+
+        for i in range(len(students)):
+            grade = calculate_grade(marks[i])
+            result = "Pass" if marks[i] >= 35 else "Fail"
+
+            writer.writerow([
+                students[i],
+                marks[i],
+                grade,
+                result
+            ])
+
+    print("\n✅ report.csv generated successfully!")
+
+
+def load_data(filename):
+    students = []
+    marks = []
+
+    with open(filename, "r") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            students.append(row["Name"])
+            marks.append(int(row["Marks"]))
+
+    return np.array(students), np.array(marks)
+students, marks = load_data("student_data.csv")
+
+
+
+# Grade Statistics
+
+def grade_statistics():
+    grades = []
+    
+    for mark in marks:
+        grades.append(calculate_grade(mark))
         
+    print("\n" + "=" *40)
+    print("GRADE STATISTICS")
+    print("=" * 40)
+    
+    grade_list = ["A+", "A", "B", "C", "D", "F"]
+    
+    for grade in grade_list:
+        count = grades.count(grade)
+        print(f"{grade:<2} : {count} Student(s)")
+display_summary()
+display_grades()
 display_top_students()
+generate_report()
+grade_statistics()        
